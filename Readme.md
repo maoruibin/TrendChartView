@@ -1,4 +1,5 @@
 # TrendChartView
+[![Build Status](https://travis-ci.org/maoruibin/TrendChartView.svg?branch=master)](https://travis-ci.org/maoruibin/TrendChartView)
 [![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/TrendChartView/blob/master/LICENSE.txt)
 
 A custom sliding indicator view showing the air quality index(AQI) by hour( From MoWeather)
@@ -7,7 +8,7 @@ A custom sliding indicator view showing the air quality index(AQI) by hour( From
 ![trendchart](http://7xr9gx.com1.z0.glb.clouddn.com/trendchart.gif)
 
 ## Download
-[fir](https://fir.im/2ej)
+[TrendChartView demo](https://fir.im/2ej)
 
 ## Features
 * As the sliding indicator is always displayed in the visible area of the screen.
