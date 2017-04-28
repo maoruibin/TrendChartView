@@ -3,12 +3,13 @@
 [![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/TrendChartView/blob/master/LICENSE.txt)
 
 A custom sliding indicator view showing the air quality index(AQI) by hour( From MoWeather)
+| blog  [自定义复杂 View 以及极限绘制优化实践](http://gudong.name/2017/04/28/custom-preference-view.html)
 
 ## How it looks
 ![trendchart](http://7xr9gx.com1.z0.glb.clouddn.com/trendchart.gif)
 
 ## Download
-[TrendChartView demo](https://fir.im/2ej)
+[TrendChartView demo apk](https://fir.im/2ej)
 
 ## Features
 * As the sliding indicator is always displayed in the visible area of the screen.
