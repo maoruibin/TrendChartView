@@ -8,8 +8,6 @@ A custom sliding indicator view showing the air quality index(AQI) by hour( From
 ## How it looks
 ![trendchart](http://7xr9gx.com1.z0.glb.clouddn.com/trendchart.gif)
 
-![rendchart static](http://7xr9gx.com1.z0.glb.clouddn.com/trendchart-static.jpg)
-
 ## Download
 [TrendChartView demo apk](https://fir.im/2ej)
 
