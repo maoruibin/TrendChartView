@@ -19,7 +19,6 @@ package name.gudong.trendchart;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
 
 public class HorizontalScrollChartParentView extends HorizontalScrollView {
@@ -55,29 +54,8 @@ public class HorizontalScrollChartParentView extends HorizontalScrollView {
             mListener.onScrollChanged(l, t, oldl, oldt);
         }
     }
-    int x = -1;
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                x = (int) ev.getX();
-                break;
-            case MotionEvent.ACTION_UP:
-                if (mListener != null) {
-                    mListener.onScrollEnd(ev.getX() < x);
-                }
-                break;
-        }
-        return super.onTouchEvent(ev);
-    }
 
     public interface OnScrollListener {
         void onScrollChanged(int x, int y, int oldX, int oldY);
-
-        /**
-         * 滑动结束
-         * @param isToLeft 是不是向左滑动
-         */
-        void onScrollEnd(boolean isToLeft);
     }
 }

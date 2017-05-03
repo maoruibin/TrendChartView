@@ -59,11 +59,6 @@ public class MainActivity extends AppCompatActivity {
             public void onScrollChanged(int x, int y, int oldX, int oldY) {
                 trendChartView.onTrendCharScrollChanged(x, y, oldX, oldY);
             }
-
-            @Override
-            public void onScrollEnd(boolean isToLeft) {
-                trendChartView.setScrolledByOuterActor(false);
-            }
         });
 
         trendChartView.post(new Runnable() {

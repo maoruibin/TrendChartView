@@ -129,10 +129,19 @@ public class TrendChartView extends View {
     private int mScreenWidth;
 
     private List<ITrendData> mDataList = new ArrayList<>();
+    /**
+     * 图表绘制点集合
+     */
     private List<ChartRect> mChartRectList = new ArrayList<>();
     private int mListSize = 0;
     private int mCurrentTimePosition = -1;
+    /**
+     * 指示标沿着贝塞尔曲线平滑滑动
+     */
     private ArrayList<PointF> mControlPoints = new ArrayList<>();
+    /**
+     * 日期集合
+     */
     private List<String> mDayListInfo = new ArrayList<>();
     private List<String> mHourListInfo = new ArrayList<>(3);
     /**
@@ -275,13 +284,13 @@ public class TrendChartView extends View {
             paint.setColor(Color.parseColor("#80000000"));
             canvas.drawRect(canvas.getClipBounds(), paint);
         }
-
+        //画等级虚线背景
         drawGradeAxis(canvas);
-
+        //画柱状图
         drawCharts(canvas);
-
+        //画指示器
         drawIndicatorLine(canvas, mOffset, mCurrentData);
-
+        //画底部的时间
         drawBottomDateInfo(canvas);
 
     }
@@ -349,7 +358,7 @@ public class TrendChartView extends View {
         int currentOffsetAbs = mCurrentIndex * itemWidth;
         mCurrentDay = currentOffsetAbs / mAverageDayWidth;
 
-        if (mMoveListener != null && !isScrolledByOuterActor) {
+        if (mMoveListener != null) {
             mMoveListener.moveTo(mOffset, mCurrentDay);
         }
 
@@ -390,15 +399,6 @@ public class TrendChartView extends View {
         return Math.round((scale * (scrollVisibleWidth - visibleScrollWidth)));
     }
 
-
-    /**
-     * 是不是因为外部因素执行的滑动 比如点击五天预报
-     */
-    private boolean isScrolledByOuterActor = false;
-
-    public void setScrolledByOuterActor(boolean flag) {
-        this.isScrolledByOuterActor = flag;
-    }
 
     public interface OnMoveListener {
         /**
@@ -444,6 +444,10 @@ public class TrendChartView extends View {
         }
     }
 
+    /**
+     * 绘制三根背景虚线
+     * @param canvas
+     */
     private void drawGradeAxis(Canvas canvas) {
         canvas.drawPath(mPathGradLine, mGradeAxisPaint);
     }
@@ -455,10 +459,18 @@ public class TrendChartView extends View {
         canvas.drawPath(mPathIndicatorLine, mChartTestLinePaint);// draw all path
     }
 
+    /**
+     * 封装的用于画柱状图的属性对象
+     */
     private static class ChartRect {
+        /**
+         * 柱状图矩区域
+         */
         RectF rectChart;
-        @ColorInt
-        int color;
+        /**
+         * 柱子颜色
+         */
+        @ColorInt int color;
     }
 
     private void drawChartRect(Canvas canvas, int position) {
@@ -478,7 +490,7 @@ public class TrendChartView extends View {
 
 
     /**
-     * 计算点
+     * 计算点柱状图的点坐标集合
      */
     private void calculateCurveDot() {
         mControlPoints.clear();
@@ -545,7 +557,6 @@ public class TrendChartView extends View {
 
     public void fillData(List<ITrendData> dataList, List<String> dayListInfo, int dayCount) {
         mListSize = dataList.size();
-        Log.d(TAG, "fillData() called with: dataList = [" + dataList.size() + "], dayListInfo = [" + dayListInfo.size() + "], dayCount = [" + dayCount + "]");
         mControlPoints = new ArrayList<>(mListSize);
         mChartTrendWidthAbs = mListSize * getItemWidthWithSpace();
         mDataList = dataList;
@@ -553,9 +564,7 @@ public class TrendChartView extends View {
         mDayRecord = new SparseIntArray(mDayCount);
         mDayListInfo = dayListInfo;
         mCurrentTimePosition = getCurrentTimePosition(mDayListInfo);
-        if (isDebug) {
-            Log.i(TAG, "fillData: " + mCurrentTimePosition);
-        }
+
         for (ITrendData data : dataList) {
             if (data.value() >= 300) {
                 mBigModeChart = true;
@@ -574,13 +583,13 @@ public class TrendChartView extends View {
         mCurrentIndex = 0;
         mCurrentData = mDataList.get(mCurrentIndex);
 
-        //提前计算点
+        //计算柱状图的点集合
         calculateCurveDot();
-        //计算背景虚线
+        //计算背景虚线的 path
         calculatedLinePath();
-
+        //计算日期的位置坐标集合
         calculateBottomTextPoint();
-
+        //发起重绘请求
         requestLayout();
     }
 
