@@ -6,7 +6,7 @@ A custom sliding indicator view showing the air quality index(AQI) by hour( From
 | blog  [自定义复杂 View 以及相关绘制优化实践](http://gudong.site/2017/04/28/custom-preference-view.html)
 
 ## How it looks
-![trendchart](http://7xr9gx.com1.z0.glb.clouddn.com/trendchart.gif)
+![](https://gitee.com/maoruibin/img/raw/master/2021/02/09/SC-1612863632697.gif)
 
 ## Download
 [TrendChartView demo apk](https://fir.im/2ej)
